@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Falling Stars Animation</title>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            color: #fff;
+            animation: fall linear infinite;
+        }
+        .star::before{
+            content: '\f005';
+            font-family:fontAwesome;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const numStars = 80;
+            const container = document.body;
+
+            for (let i = 0; i < numStars; i++) {
+                createStar();
+            }
+
+            function createStar() {
+                const star = document.createElement("div");
+                star.classList.add("star");
+                star.style.left = `${Math.random() * window.innerWidth}px`;
+                container.appendChild(star);
+
+                const animationDuration = Math.random() * 5 + 2; // between 2 and 7 seconds
+                star.style.animationDuration = `${animationDuration}s`;
+
+                const animationDelay = Math.random() * 5; // between 0 and 5 seconds
+                star.style.animationDelay = `-${animationDelay}s`;
+            }
+        });
+    </script>
+</body>
+</html>
